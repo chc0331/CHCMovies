@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.chcmovies.ui.activities.movie.MovieViewModel" />
+
+        <import type="com.example.chcmovies.extension.ListKt" />
+
+        <import type="java.util.List" />
+
+        <variable
+            name="directorsList"
+            type="List&lt;String>" />
+
+        <variable
+            name="actorsList"
+            type="List&lt;String>" />
+
+        <variable
+            name="genresList"
+            type="List&lt;String>" />
+
+        <variable
+            name="movie"
+            type="com.example.chcmovies.data.MovieItem" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        tools:context=".ui.activities.movie.MovieActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/movie_image"
+            android:layout_width="120dp"
+            android:layout_height="160dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <ImageView
+                imageUrl="@{movie.imageUrl}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:transitionName="movie_thumb"
+                tools:src="@drawable/ic_launcher_foreground" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/movie_image"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <TextView
+                android:id="@+id/ratingTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Rating:"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ratingTitle"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@+id/ratingTitle"
+                android:text="@{String.valueOf(movie.rating)}"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="rating" />
+
+            <TextView
+                android:id="@+id/directorTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="8dp"
+                android:text="Director:"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/directorTitle"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@+id/directorTitle"
+                android:text="@{ListKt.makeList(directorsList)}"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="director" />
+
+            <TextView
+                android:id="@+id/starringTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/director"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="8dp"
+                android:text="Starring:"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/starring"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/starringTitle"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@+id/starringTitle"
+                android:text="@{ListKt.makeList(actorsList)}"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="starring" />
+
+            <TextView
+                android:id="@+id/genreTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/starring"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="8dp"
+                android:text="Genre:"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/genre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/genreTitle"
+                android:layout_alignTop="@+id/genreTitle"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@+id/genreTitle"
+                android:text="@{ListKt.makeList(genresList)}"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/movie_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@{movie.movieName}"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_image"
+            tools:text="Movie name" />
+
+        <TextView
+            android:id="@+id/movie_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@{movie.description}"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_title"
+            tools:text="Description" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/imdb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/button_shape"
+            android:onClick="@{()->vm.imdbClicked()}"
+            android:text="OPEN IMDB"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_description" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
