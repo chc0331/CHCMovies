@@ -2,8 +2,8 @@
 <hr/>
 
 ## Description
-Subject : 인기 영화 리스트 Json 데이터를 파싱해 정보를 보여주는 App
-Purpose : 인기 영화 리스트를 Categorized 해주어 영화 정보를 제공해주는 앱 
+Subject : 인기 영화 리스트 Json 데이터를 파싱해 정보를 보여주는 App   
+Purpose : 인기 영화 리스트를 Categorized 해주어 영화 정보를 제공해주는 앱   
 What to learn : AAC를 이용한 MVVM 패턴을 적용 해주며 최신 안드로이드 기술 스킬 향상
 
 ## Architecture
